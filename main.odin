@@ -101,8 +101,9 @@ process_image :: proc(options: ^Options) -> bool #no_bounds_check {
 		}
 
 		os.write(os.stdout, line_buffer)
-		os.flush(os.stdout)
 	}
+
+	os.flush(os.stdout)
 
 	return true
 }
