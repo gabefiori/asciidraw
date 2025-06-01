@@ -101,21 +101,21 @@ process_image :: proc(options: ^Options) -> bool #no_bounds_check {
 	return true
 }
 
-resize_image :: proc(original: Image, resized: ^Image) -> bool {
-	resized.data = make([^]u8, resized.x * resized.y * DESIRED_CHANNELS, context.temp_allocator)
-	resize_result := stbi.resize_uint8(
-		original.data,
-		original.x,
-		original.y,
-		original.x * DESIRED_CHANNELS,
-		resized.data,
-		resized.x,
-		resized.y,
-		resized.x * DESIRED_CHANNELS,
+resize_image :: proc(source: Image, target: ^Image) -> bool {
+	target.data = make([^]u8, target.x * target.y * DESIRED_CHANNELS, context.temp_allocator)
+	result := stbi.resize_uint8(
+		source.data,
+		source.x,
+		source.y,
+		source.x * DESIRED_CHANNELS,
+		target.data,
+		target.x,
+		target.y,
+		target.x * DESIRED_CHANNELS,
 		DESIRED_CHANNELS,
 	)
 
-	if resize_result != 1 {
+	if result != 1 {
 		fmt.eprintfln("Failed to resize image: %s", stbi.failure_reason())
 		return false
 	}
