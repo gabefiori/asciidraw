@@ -2,10 +2,8 @@ package asciidraw
 
 import "core:flags"
 import "core:fmt"
-import "core:mem"
 import "core:os"
 import stbi "vendor:stb/image"
-_ :: mem
 
 PALETTE := "  _.,:;i80$W#@Ñ"
 
