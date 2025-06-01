@@ -94,7 +94,6 @@ process_image :: proc(options: ^Options) -> bool #no_bounds_check {
 			char_index := int(brightness) * (len(PALETTE) - 1) / 255
 			line_buffer[x] = PALETTE[char_index]
 		}
-
 		os.write(os.stdout, line_buffer)
 	}
 	os.flush(os.stdout)
@@ -104,7 +103,6 @@ process_image :: proc(options: ^Options) -> bool #no_bounds_check {
 
 resize_image :: proc(original: Image, resized: ^Image) -> bool {
 	resized.data = make([^]u8, resized.x * resized.y * DESIRED_CHANNELS, context.temp_allocator)
-
 	resize_result := stbi.resize_uint8(
 		original.data,
 		original.x,
