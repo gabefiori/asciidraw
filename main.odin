@@ -124,7 +124,7 @@ resize_image :: proc(source: Image, target: ^Image) -> bool {
 }
 
 generate_rgb_luminance :: proc() -> (result: [256][3]f32) #no_bounds_check {
-	for i in 0 ..< 256 {
+	#unroll for i in 0 ..< 256 {
 		result[i].r = 0.2126 * f32(i)
 		result[i].g = 0.7152 * f32(i)
 		result[i].b = 0.0722 * f32(i)
